@@ -1,0 +1,5 @@
+.cargo
+.ruff_cache
+*.html
+*.txt
+target/

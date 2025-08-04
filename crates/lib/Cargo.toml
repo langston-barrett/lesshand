@@ -1,0 +1,17 @@
+[package]
+name = "lesshand"
+description = "A shorthand for the 21st century"
+version = "0.0.0"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+
+[dependencies]
+
+[dev-dependencies]
+expect-test = { workspace = true }
+proptest = { workspace = true }
+
+[lints]
+workspace = true

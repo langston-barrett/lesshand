@@ -1,0 +1,10 @@
+[book]
+authors = ["Langston Barrett"]
+language = "en"
+multilingual = false
+src = "."
+title = "Lesshand"
+
+[output.html]
+git-repository-url = "https://github.com/langston-barrett/lesshand/tree/main/doc"
+edit-url-template = "https://github.com/langston-barrett/lesshand/edit/main/doc/{path}"

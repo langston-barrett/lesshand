@@ -1,0 +1,16 @@
+[package]
+name = "lesshand-cli"
+description = "Command-line interface for Lesshand"
+version = "0.0.0"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+clap = { features = ["derive"], workspace = true }
+lesshand = { path = "../lib" }
+
+[lints]
+workspace = true
