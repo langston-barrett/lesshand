@@ -176,12 +176,12 @@ mod test {
             only --> oy: 8
             otherwise --> othw: 7
             over --> ov: 7
-            please --> plz: 0
+            please --> pls: 9
             really --> rly: 9
             several --> sev: 9
             shouldn't --> sd': 16
             should --> sd: 8
-            thanks --> thx: 0
+            thanks --> tks: 9
             that --> tt: 8
             the --> l: 0
             they --> e: 1

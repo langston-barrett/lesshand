@@ -206,8 +206,8 @@ fn check_memorable(abbrevs: &[(&str, &str)]) -> Result<(), RequirementError> {
         ("having", "hvq"),
         ("I've", "iv"),
         ("okay", "k"),
-        ("please", "plz"),
-        ("thanks", "thx"),
+        ("please", "pls"),
+        ("thanks", "tks"),
     ];
     const MIN_MEMORABILITY: usize = 5;
     for (long, short) in abbrevs.iter().copied() {
@@ -259,7 +259,7 @@ fn check_uniquely_memorable(abbrevs: &[(&str, &str)]) -> Result<(), RequirementE
         ("not", "x"),
         ("of", "o"),
         ("okay", "k"), // ok: existing
-        ("please", "plz"),
+        ("please", "pls"),
         ("should", "sd"),
         ("thanks", "thx"),
         ("that", "tt"),
@@ -342,12 +342,14 @@ fn check_uniquely_memorable(abbrevs: &[(&str, &str)]) -> Result<(), RequirementE
     const SPECIFIC_WORD_EXCEPTIONS: &[(&str, &str, &str)] = &[
         ("also", "al", "all"),
         ("billion", "bil", "bill"),
-        ("must", "mt", "meet"), // also has "mustn't"
-        ("must", "mt", "met"),  // also has "mustn't"
+        ("must", "mt", "meet"),    // also has "mustn't"
+        ("must", "mt", "met"),     // also has "mustn't"
+        ("please", "pls", "plus"), // ok: existing
         ("president", "pres", "press"),
         ("rights", "rts", "rates"),
         ("several", "sev", "seven"),
         ("something", "smth", "smith"),
+        ("thanks", "tks", "takes"), // ok: existing
         ("will", "ll", "little"),
     ];
     for (i0, (long0, short)) in abbrevs.iter().copied().enumerate() {

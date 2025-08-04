@@ -123,15 +123,15 @@ mod test {
             international --> intl: 69
             okay --> k: 69
             major --> mjr: 68
+            please --> pls: 66
+            thanks --> tks: 64
             department --> dept: 53
             especially --> esp: 53
             move --> mv: 52
             services --> svcs: 44
             interest --> ist: 40
             market --> mkt: 34
-            please --> plz: 28
             rights --> rts: 24
-            thanks --> thx: 24
             baby --> bb: 22
             littlest --> lilst: 0
             internationally --> intlly: 0

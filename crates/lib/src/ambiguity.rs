@@ -115,6 +115,7 @@ mod test {
             I've --> iv: 602
             good --> gd: 598
             million --> mil: 558
+            please --> pls: 528
             October --> oct: 504
         "#]];
         let mut results = Vec::with_capacity(ABBREVS.len());

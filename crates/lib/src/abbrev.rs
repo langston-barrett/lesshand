@@ -15,6 +15,10 @@ pub(crate) fn char_is_valid_in_abbrev_tgt(b: u8) -> bool {
 }
 
 // TODO:
+// abbrev!("language", "lang"),
+// abbrev!("sorry", "sry"),
+// abbrev!("family", "fam"),
+// abbrev!("better", "btr"),
 // abbrev!("business", "biz"),
 // abbrev!("including", "incl"),
 // abbrev!("universty", "uni"),
@@ -36,7 +40,6 @@ pub(crate) fn char_is_valid_in_abbrev_tgt(b: u8) -> bool {
 // abbrev!("in real life", ",irl"),
 // abbrev!("oh my god", ",omg"),
 // abbrev!("on the other hand", ",otoh"),
-// abbrev!("sorry", "sry"),
 // abbrev!("to be announced", ",tba"),
 // abbrev!("to be decided", ",tbd"),
 //
@@ -94,12 +97,12 @@ pub const ABBREVS: &[(&str, &str, u64)] = &[
     abbrev!("only", "oy"),
     abbrev!("otherwise", "othw"),
     abbrev!("over", "ov"),
-    abbrev!("please", "plz"),
+    abbrev!("please", "pls"),
     abbrev!("really", "rly"),
     abbrev!("several", "sev"),
     abbrev!("shouldn't", "sd'"),
     abbrev!("should", "sd"),
-    abbrev!("thanks", "thx"),
+    abbrev!("thanks", "tks"),
     abbrev!("that", "tt"),
     abbrev!("the", "l"),
     abbrev!("they", "e"),
