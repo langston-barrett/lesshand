@@ -1,8 +1,9 @@
 # Command-line interface
 
-Lesshand provides a command-line interface. Currently, the only way to install
-it is to build it from source. See [the developer documentation](dev/dev.md)
-for details.
+Lesshand provides a command-line interface. It can be downloaded from the
+[releases page][releases] or [built from source](dev/dev.md) for details.
+
+[releases]: https://github.com/langston-barrett/lesshand/releases
 
 The command-line interface has two commands: `encode` and `decode`. They each
 take a file path as their only argument and provide output on stdout.
