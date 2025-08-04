@@ -1,7 +1,7 @@
 # Command-line interface
 
 Lesshand provides a command-line interface. It can be downloaded from the
-[releases page][releases] or [built from source](dev/dev.md) for details.
+[releases page][releases] or [built from source](dev/dev.md).
 
 [releases]: https://github.com/langston-barrett/lesshand/releases
 
