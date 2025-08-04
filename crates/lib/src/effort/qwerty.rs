@@ -712,12 +712,12 @@ mod test_qwerty_effort {
             only --> oy: 5
             otherwise --> othw: 14
             over --> ov: 6
-            please --> plz: 7
+            please --> pls: 8
             really --> rly: 7
             several --> sev: 10
             shouldn't --> sd': 16
             should --> sd: 10
-            thanks --> thx: 6
+            thanks --> tks: 7
             that --> tt: 5
             the --> l: 6
             they --> e: 8

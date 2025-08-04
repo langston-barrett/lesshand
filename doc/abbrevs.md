@@ -65,12 +65,12 @@ okay --> k
 only --> oy
 otherwise --> othw
 over --> ov
-please --> plz
+please --> pls
 really --> rly
 several --> sev
 shouldn't --> sd'
 should --> sd
-thanks --> thx
+thanks --> tks
 that --> tt
 the --> l
 they --> e
