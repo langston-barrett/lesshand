@@ -1,0 +1,63 @@
+name: ci
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    uses: langston-barrett/gha/.github/workflows/rust-ci.yml@2836296ce750cde5dcba9866b62f82c019de540d
+    with:
+      bench: false
+      os: ubuntu-latest
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Spell check docs
+        # We pin a specific version because updates can come with additional
+        # typo fixes. These could break CI unexpectedly if we just pinned @v1.
+        uses: crate-ci/typos@v1.34.0
+        with:
+          files: doc/
+
+      - name: Check for empty files
+        run: ./x empty ./**/*.{md,py,sh,rs}
+
+      - name: Check for trailing whitespace
+        run: ./x whitespace --check ./**/*.{md,sh}
+
+      # ref: xref-ci
+      - name: Check cross-references
+        run: ./x xref .github crates doc
+
+      - uses: astral-sh/ruff-action@v3
+
+      # ref: ruff-format
+      - name: Check formatting with ruff
+        run: ruff format --check ./**/*.py
+
+      # ref: ruff-check
+      - name: Lint with ruff
+        run: ruff check ./**/*.py
+
+      - name: Check for broken links
+        run: |
+          curl \
+            --fail \
+            --location \
+            --proto '=https' \
+            --show-error \
+            --silent \
+            --tlsv1.2 \
+            https://github.com/langston-barrett/mdlynx/releases/download/v0.1.0/mdlynx > \
+            /usr/local/bin/mdlynx
+          chmod +x /usr/local/bin/mdlynx
+          cd doc/dev/
+          mdlynx *.md

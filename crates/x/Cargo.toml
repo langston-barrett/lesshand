@@ -1,0 +1,15 @@
+[package]
+name = "x"
+description = "Automation for Lesshand development"
+version = "0.0.0"
+
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+
+[dependencies]
+clap = { features = ["derive"], workspace = true }
+
+[lints]
+workspace = true

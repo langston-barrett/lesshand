@@ -1,0 +1,21 @@
+[package]
+name = "lesshand-design"
+description = "Tool for designing Lesshand"
+version = "0.0.0"
+authors.workspace = true
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow = { workspace = true }
+distance = { version = "0.4" }
+clap = { features = ["derive"], workspace = true }
+lesshand = { path = "../lib" }
+prettydiff = "0.8"
+
+[dev-dependencies]
+expect-test = { workspace = true }
+
+[lints]
+workspace = true
