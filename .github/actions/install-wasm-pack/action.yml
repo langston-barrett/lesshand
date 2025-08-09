@@ -1,0 +1,36 @@
+name: Install wasm-pack
+description: Install wasm-pack from GitHub Releases and add it to PATH
+inputs:
+  version:
+    description: wasm-pack version (without the leading 'v')
+    required: false
+    default: '0.13.1'
+  target:
+    description: Archive target triple
+    required: false
+    default: 'x86_64-unknown-linux-musl'
+runs:
+  using: composite
+  steps:
+    - name: Download and install wasm-pack
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+        TARGET: ${{ inputs.target }}
+      run: |
+        set -euo pipefail
+        INSTALL_DIR="$HOME/.local/bin"
+        mkdir -p "$INSTALL_DIR"
+        echo "$INSTALL_DIR" >> "$GITHUB_PATH"
+        ARCHIVE="wasm-pack-v${VERSION}-${TARGET}.tar.gz"
+        URL="https://github.com/rustwasm/wasm-pack/releases/download/v${VERSION}/${ARCHIVE}"
+        curl \
+          --fail \
+          --location \
+          --silent \
+          --show-error \
+          "$URL" \
+          | tar -xz
+        DIR="wasm-pack-v${VERSION}-${TARGET}"
+        mv "$DIR/wasm-pack" "$INSTALL_DIR/wasm-pack"
+        rm -rf "$DIR"
