@@ -15,6 +15,16 @@ pub(crate) fn go(_conf: Config) -> Result<(), Box<dyn std::error::Error>> {
         .status();
     match status {
         Ok(s) if s.success() => Ok(()),
-        _ => Err("wasm-pack failed; install it with `cargo install wasm-pack`".into()),
+        Ok(s) => {
+            Err(format!(
+                "wasm-pack failed with exit code: {}. Install it with `cargo install wasm-pack` if missing.",
+                s.code().map_or_else(|| "unknown".to_string(), |c| c.to_string())
+            ).into())
+        }
+        Err(e) => {
+            Err(format!(
+                "Failed to execute wasm-pack: {e}. Install it with `cargo install wasm-pack` if missing."
+            ).into())
+        }
     }
 }
