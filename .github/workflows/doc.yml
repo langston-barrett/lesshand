@@ -7,15 +7,21 @@ defaults:
 on:
   push:
     branches:
-      - main
+    - main
+
+concurrency:
+  # Only run one of these at a time because they update the global pages. Don't
+  # cancel existing runs.
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   doc:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pages: write
       id-token: write
+      pages: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
