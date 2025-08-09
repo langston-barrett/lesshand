@@ -2,6 +2,7 @@ mod cli;
 mod empty;
 mod lint;
 mod whitespace;
+mod wasm;
 mod xref;
 
 use std::error::Error;
@@ -15,6 +16,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         Command::Lint(conf) => lint::go(conf)?,
         Command::Whitespace(conf) => whitespace::go(conf)?,
         Command::Xref(conf) => xref::go(conf)?,
+        Command::Wasm(conf) => wasm::go(conf)?,
     }
     Ok(())
 }
