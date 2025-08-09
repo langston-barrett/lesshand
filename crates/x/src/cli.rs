@@ -10,4 +10,5 @@ pub(crate) enum Command {
     Lint(crate::lint::Config),
     Whitespace(crate::whitespace::Config),
     Xref(crate::xref::Config),
+    Wasm(crate::wasm::Config),
 }

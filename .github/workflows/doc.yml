@@ -1,20 +1,54 @@
 name: doc
 
+defaults:
+  run:
+    shell: bash --noprofile --norc -euxo pipefail {0}
+
 on:
   push:
     branches:
-    - main
-
-concurrency:
-  # Only run one of these at a time because they update the global pages. Don't
-  # cancel existing runs.
-  group: "pages"
-  cancel-in-progress: false
+      - main
 
 jobs:
   doc:
-    uses: langston-barrett/gha/.github/workflows/mdbook-pages.yml@8453c38f50561612c0baddb16d1438950c4d7473
+    runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
       pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install wasm-pack
+        uses: ./.github/actions/install-wasm-pack
+        with:
+          version: '0.13.1'
+          target: 'x86_64-unknown-linux-musl'
+
+      - run: ./x wasm
+
+      # - name: Copy wasm assets into built site
+      #   run: |
+      #     mkdir -p doc/book/wasm
+      #     cp -r doc/wasm/pkg doc/book/wasm/pkg
+      #     cp -v doc/wasm/demo.js doc/book/wasm/
+
+      - uses: peaceiris/actions-mdbook@v2
+
+      - name: Build mdBook
+        run: mdbook build
+        working-directory: doc
+
+      - name: Upload docs artifact to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.repository_owner == 'langston-barrett'
+        with:
+          path: doc/book/
+
+      - name: Deploy docs to GitHub Pages
+        uses: actions/deploy-pages@v4
+        if: github.ref == 'refs/heads/main' && github.repository_owner == 'langston-barrett'
+        id: deployment

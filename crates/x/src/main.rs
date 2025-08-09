@@ -1,6 +1,7 @@
 mod cli;
 mod empty;
 mod lint;
+mod wasm;
 mod whitespace;
 mod xref;
 
@@ -15,6 +16,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         Command::Lint(conf) => lint::go(conf)?,
         Command::Whitespace(conf) => whitespace::go(conf)?,
         Command::Xref(conf) => xref::go(conf)?,
+        Command::Wasm(conf) => wasm::go(conf)?,
     }
     Ok(())
 }
