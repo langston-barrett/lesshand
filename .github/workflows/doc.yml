@@ -36,12 +36,6 @@ jobs:
 
       - run: ./x wasm
 
-      # - name: Copy wasm assets into built site
-      #   run: |
-      #     mkdir -p doc/book/wasm
-      #     cp -r doc/wasm/pkg doc/book/wasm/pkg
-      #     cp -v doc/wasm/demo.js doc/book/wasm/
-
       - uses: peaceiris/actions-mdbook@v2
 
       - name: Build mdBook
