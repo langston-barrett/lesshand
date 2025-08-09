@@ -2,6 +2,7 @@
 
 [Overview](../README.md)
 [Tour](tour.md)
+[Try it!](try.md)
 
 # Manual
 
