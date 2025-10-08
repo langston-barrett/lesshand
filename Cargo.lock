@@ -405,9 +405,9 @@ dependencies = [
 
 [[package]]
 name = "prettydiff"
-version = "0.8.1"
+version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b9a475bdea0881b8c65eb81f91fe53187b8522352a701b919c5a2c8a2f262808"
+checksum = "4b6a81a66288889f7ca681f15742108557e8daa132b33930828f4313b64109b4"
 dependencies = [
  "owo-colors",
  "prettytable-rs",
