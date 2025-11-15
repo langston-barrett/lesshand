@@ -43,7 +43,7 @@ jobs:
         working-directory: doc
 
       - name: Upload docs artifact to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         if: github.ref == 'refs/heads/main' && github.repository_owner == 'langston-barrett'
         with:
           path: doc/book/
