@@ -7,7 +7,6 @@ pub(crate) struct Cli {
 #[derive(Debug, clap::Subcommand)]
 pub(crate) enum Command {
     Empty(crate::empty::Config),
-    Lint(crate::lint::Config),
     Whitespace(crate::whitespace::Config),
     Xref(crate::xref::Config),
     Wasm(crate::wasm::Config),
