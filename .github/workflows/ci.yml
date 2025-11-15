@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   ci:
     uses: langston-barrett/gha/.github/workflows/rust-ci.yml@2836296ce750cde5dcba9866b62f82c019de540d
@@ -18,37 +22,17 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-
-      - name: Spell check docs
-        # We pin a specific version because updates can come with additional
-        # typo fixes. These could break CI unexpectedly if we just pinned @v1.
-        uses: crate-ci/typos@v1.39.2
+      - uses: actions/checkout@v5 # zizmor: ignore[unpinned-uses] TODO
         with:
-          files: doc/
-
-      - name: Check for empty files
-        run: ./x empty ./**/*.{md,py,sh,rs}
-
-      - name: Check for trailing whitespace
-        run: ./x whitespace --check ./**/*.{md,sh}
-
-      # ref: xref-ci
-      - name: Check cross-references
-        run: ./x xref .github crates doc
-
-      - uses: astral-sh/ruff-action@v3
-
-      # ref: ruff-format
-      - name: Check formatting with ruff
-        run: ruff format --check ./**/*.py
-
-      # ref: ruff-check
-      - name: Lint with ruff
-        run: ruff check ./**/*.py
-
-      - name: Check for broken links
+          persist-credentials: false
+      - run: pip install mypy==v1.18.2
+      - uses: astral-sh/ruff-action@57714a7c8a2e59f32539362ba31877a1957dded1 # v2.1.4
+        with:
+          args: "--version"
+      - name: Create download script
         run: |
+          mkdir -p bin
+          cat > bin/download <<'EOF'
           curl \
             --fail \
             --location \
@@ -56,8 +40,33 @@ jobs:
             --show-error \
             --silent \
             --tlsv1.2 \
+            "${@}"
+          EOF
+          chmod +x bin/*
+          printf "%s/bin" "${PWD}" >> "${GITHUB_PATH}"
+      - name: Install mdlynx
+        run: |
+          download \
             https://github.com/langston-barrett/mdlynx/releases/download/v0.1.0/mdlynx > \
-            /usr/local/bin/mdlynx
-          chmod +x /usr/local/bin/mdlynx
-          cd doc/dev/
-          mdlynx *.md
+            bin/mdlynx
+          chmod +x bin/*
+      - name: Install typos
+        run: |
+          download \
+            https://github.com/crate-ci/typos/releases/download/v1.39.2/typos-v1.39.2-x86_64-unknown-linux-musl.tar.gz | \
+            tar xzf - ./typos
+          mv typos bin
+          chmod +x bin/*
+      - name: Install zizmor
+        run: |
+          download \
+            https://github.com/woodruffw/zizmor/releases/download/v1.16.3/zizmor-x86_64-unknown-linux-gnu.tar.gz | \
+            tar xzf - ./zizmor
+          mv zizmor bin
+          chmod +x bin/*
+      - name: Lint
+        run: ./scripts/lint/lint.py
+      # ref: xref-ci
+      - name: Check cross-references
+        run: ./x xref .github crates doc scripts
+

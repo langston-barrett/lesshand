@@ -27,6 +27,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Install wasm-pack
         uses: ./.github/actions/install-wasm-pack
@@ -36,7 +38,7 @@ jobs:
 
       - run: ./x wasm
 
-      - uses: peaceiris/actions-mdbook@v2
+      - uses: peaceiris/actions-mdbook@v2 # zizmor: ignore[unpinned-uses] TODO
 
       - name: Build mdBook
         run: mdbook build

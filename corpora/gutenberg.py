@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+"""Fetch the Project Gutenberg corpus"""
+
+from argparse import ArgumentParser
 from hashlib import sha256
 from pathlib import Path
 from subprocess import check_call
@@ -12,6 +15,9 @@ START = b"*** START OF THE PROJECT GUTENBERG EBOOK"
 END = b"*** END OF THE PROJECT GUTENBERG EBOOK"
 
 if __name__ == "__main__":
+    parser = ArgumentParser(description=__doc__)
+    args = parser.parse_args()
+
     if not IN.exists():
         check_call(
             [

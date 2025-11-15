@@ -43,7 +43,7 @@ Washington Wizards --> b,was
 
 ## Countries (`c`)  <!-- def: countries -->
 
-Countries are abbreivated according to ISO 3166-1 alpha-2.
+Countries are abbreviated according to ISO 3166-1 alpha-2.
 
 ```
 Afghanistan --> c,af

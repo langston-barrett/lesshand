@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+"""Fetch the Enron email corpus"""
+
+from argparse import ArgumentParser
 from gzip import GzipFile
 from hashlib import sha256
 from pathlib import Path
@@ -12,6 +15,9 @@ URL = f"https://www.cs.cmu.edu/~enron/{TAR.name}"
 OUT = HERE / "enron"
 
 if __name__ == "__main__":
+    parser = ArgumentParser(description=__doc__)
+    args = parser.parse_args()
+
     if OUT.exists():
         print("Not overwriting", str(OUT))
         exit(1)
@@ -25,7 +31,7 @@ if __name__ == "__main__":
     # TODO(lb): Remove headers, rename files
     with op(arg) as stream:
         with GzipFile(filename=TAR, fileobj=stream) as gz:
-            with TarFile(name=TAR.with_suffix(".tar"), fileobj=gz) as tar:  # type: ignore[arg-type]
+            with TarFile(name=TAR.with_suffix(".tar"), fileobj=gz) as tar:
                 info = tar.next()
                 while info is not None:
                     print(info.name)
@@ -38,6 +44,8 @@ if __name__ == "__main__":
                     out_file = (d / nm).with_suffix(".txt")
 
                     info = tar.next()
+                    if info is None:
+                        continue
                     f = tar.extractfile(info)
                     if f is None:
                         continue

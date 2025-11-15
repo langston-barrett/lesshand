@@ -17,7 +17,7 @@ runs:
       env:
         VERSION: ${{ inputs.version }}
         TARGET: ${{ inputs.target }}
-      run: |
+      run: | # zizmor: ignore[github-env]
         set -euo pipefail
         INSTALL_DIR="$HOME/.local/bin"
         mkdir -p "$INSTALL_DIR"

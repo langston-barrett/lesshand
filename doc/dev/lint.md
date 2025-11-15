@@ -73,3 +73,13 @@ typos README.md doc/
 ```
 
 [typos]: https://github.com/crate-ci/typos
+
+### GitHub Actions
+
+We run [zizmor] on our workflows.
+
+```bash
+zizmor .github
+```
+
+[zizmor]: https://docs.zizmor.sh/
