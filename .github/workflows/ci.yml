@@ -29,41 +29,10 @@ jobs:
       - uses: astral-sh/ruff-action@57714a7c8a2e59f32539362ba31877a1957dded1 # v2.1.4
         with:
           args: "--version"
-      - name: Create download script
-        run: |
-          mkdir -p bin
-          cat > bin/download <<'EOF'
-          curl \
-            --fail \
-            --location \
-            --proto '=https' \
-            --show-error \
-            --silent \
-            --tlsv1.2 \
-            "${@}"
-          EOF
-          chmod +x bin/*
-          printf "%s/bin" "${PWD}" >> "${GITHUB_PATH}"
-      - name: Install mdlynx
-        run: |
-          download \
-            https://github.com/langston-barrett/mdlynx/releases/download/v0.1.0/mdlynx > \
-            bin/mdlynx
-          chmod +x bin/*
-      - name: Install typos
-        run: |
-          download \
-            https://github.com/crate-ci/typos/releases/download/v1.39.2/typos-v1.39.2-x86_64-unknown-linux-musl.tar.gz | \
-            tar xzf - ./typos
-          mv typos bin
-          chmod +x bin/*
-      - name: Install zizmor
-        run: |
-          download \
-            https://github.com/woodruffw/zizmor/releases/download/v1.16.3/zizmor-x86_64-unknown-linux-gnu.tar.gz | \
-            tar xzf - ./zizmor
-          mv zizmor bin
-          chmod +x bin/*
+      - uses: langston-barrett/gha/.github/actions/install-mdlynx@ac0929c97ea93fafb3cb091bf2e00046399c74f2
+      - uses: langston-barrett/gha/.github/actions/install-typos@ac0929c97ea93fafb3cb091bf2e00046399c74f2
+      - uses: langston-barrett/gha/.github/actions/install-zizmor@ac0929c97ea93fafb3cb091bf2e00046399c74f2
+
       - name: Lint
         run: ./scripts/lint/lint.py
       # ref: xref-ci
