@@ -52,10 +52,9 @@ rule zizmor
 # ---------------------------------------------------------
 # markdown
 
-# TODO: https://github.com/langston-barrett/mdlynx/issues/27
-# rule mdlynx
-#   command = cd $$(dirname $in) && mdlynx $$(basename $in) && cd - && touch $out
-#   description = mdlynx
+rule mdlynx
+  command = mdlynx $in && touch $out
+  description = mdlynx
 
 rule typos
   command = typos $in && touch $out
@@ -147,7 +146,7 @@ def gha() -> None:
 def md() -> None:
     md = ls_files("*.md")
     for path in md:
-        # lint("mdlynx", path)
+        lint("mdlynx", path)
         lint("typos", path)
         txt(path)
 
