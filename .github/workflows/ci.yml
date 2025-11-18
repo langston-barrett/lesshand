@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v5 # zizmor: ignore[unpinned-uses] TODO
         with:
           persist-credentials: false
-      - uses: langston-barrett/gha/.github/actions/install-linters@585d8ef2d04787e911c2ff3bfbda30e5b3d620f3
+      - uses: langston-barrett/gha/.github/actions/install-linters@2a02a76aebfc226461aa632fe33300ba5fcf2d9d
 
       - run: ./scripts/lint/lint.py
       # ref: xref-ci
