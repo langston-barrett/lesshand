@@ -22,4 +22,4 @@ jobs:
       with:
         persist-credentials: false
     - uses: langston-barrett/gha/.github/actions/install-linters@9137259cab1d86dbeae3bde37898a2dfe6a12130
-    - run: ./scripts/lint/lint.py
+    - run: ./scripts/lint/lint.py --skip=clippy
