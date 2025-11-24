@@ -37,7 +37,6 @@ does support a few light-weight checks. It checks that:
 - Every `def` has at least one `ref`
 
 In CI, the tool is run as
-<!-- def: xref-ci -->
 ```sh
 ./x xref .github crates doc
 ```

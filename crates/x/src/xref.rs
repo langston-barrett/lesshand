@@ -1,6 +1,7 @@
 use std::{
     collections::{HashMap, HashSet},
     error::Error,
+    ffi::OsString,
     fmt, fs, io,
     path::PathBuf,
     process,
@@ -59,6 +60,9 @@ fn collect(
     defs: &mut HashMap<String, HashSet<Pos>>,
     refs: &mut HashMap<String, HashSet<Pos>>,
 ) {
+    if path.file_name() == Some(&OsString::from("xref.py")) {
+        return;
+    }
     for (n, line) in content.lines().enumerate() {
         let p = Pos {
             file: path.clone(),
