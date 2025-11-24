@@ -5,5 +5,5 @@
 target/
 
 # see scripts/lint/lint.py
-/build.ninja
+*.ninja
 /.out
