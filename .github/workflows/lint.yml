@@ -21,5 +21,5 @@ jobs:
     - uses: actions/checkout@c2d88d3ecc89a9ef08eebf45d9637801dcee7eb5 # v0.6.0
       with:
         persist-credentials: false
-    - uses: langston-barrett/gha/.github/actions/install-linters@c654e65f352816f626d3e61c47245e413302f244
+    - uses: langston-barrett/gha/.github/actions/install-linters@a523f20f42319e0158fe00ab4772a822d50ad248
     - run: ./scripts/lint/lint.py --skip=clippy
