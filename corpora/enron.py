@@ -29,8 +29,11 @@ if __name__ == "__main__":
         (op, arg) = (open, TAR)  # type: ignore[assignment]
 
     # TODO(lb): Remove headers, rename files
-    with op(arg) as stream:
-        with GzipFile(filename=TAR, fileobj=stream) as gz:
+    with op(arg) as stream:  # ty: ignore[invalid-argument-type]
+        with GzipFile(
+            filename=TAR,
+            fileobj=stream,  # ty: ignore[invalid-argument-type]
+        ) as gz:
             with TarFile(name=TAR.with_suffix(".tar"), fileobj=gz) as tar:
                 info = tar.next()
                 while info is not None:
