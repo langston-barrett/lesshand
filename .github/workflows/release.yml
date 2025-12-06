@@ -12,6 +12,8 @@ on:
 jobs:
   release:
     uses: langston-barrett/gha/.github/workflows/rust-release.yml@348fdc15bbc786f5cbffab25dd100df846607721
+    with:
+      publish-flags: --workspace --exclude=lesshand-design --exclude=x
     secrets:
       crates-io-token: ${{ secrets.CRATES_IO_TOKEN }}
     permissions:
