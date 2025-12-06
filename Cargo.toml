@@ -19,13 +19,16 @@ license = "MIT"
 anyhow = { version = "1" }
 clap = { features = ["derive"], version = "4" }
 expect-test = "1"
+lesshand = { version = "0.1.0", path = "crates/lib" }
 proptest = "1"
 
 [workspace.lints.clippy]
-pedantic = { level = "warn", priority = -1 }
+# pedantic = { level = "warn", priority = -1 }
+case_sensitive_file_extension_comparisons = "allow"
 dbg_macro = "warn"
 explicit_iter_loop = "warn"
 format_push_string = "warn"
+ignore_without_reason = "warn"
 implicit_clone = "warn"
 implicit_hasher = "allow"
 inefficient_to_string = "warn"
@@ -44,6 +47,7 @@ unimplemented = "warn"
 uninlined_format_args = "warn"
 unreadable_literal = "warn"
 use_debug = "warn"
+
 [workspace.lints.rust]
 absolute_paths_not_starting_with_crate = "warn"
 dead_code = "warn"

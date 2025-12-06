@@ -10,7 +10,7 @@ license.workspace = true
 [dependencies]
 anyhow = { workspace = true }
 clap = { features = ["derive"], workspace = true }
-lesshand = { path = "../lib" }
+lesshand = { workspace = true }
 
 [lints]
 workspace = true

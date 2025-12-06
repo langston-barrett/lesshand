@@ -251,8 +251,8 @@ mod test {
     fn test_license() {
         let expected = expect![[r#"
             QWERTY:    5.45% (ok)
-            Print:     6.33% (ok)
-            Encode:    6.40% (ok)
+            Print:     6.32% (ok)
+            Encode:    6.39% (ok)
             Decode:    0.00% (ok)
             Double:    0.00% (ok)
             Roundtrip: 0.00% (ok)

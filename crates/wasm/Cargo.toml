@@ -12,7 +12,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 wasm-bindgen = "0.2"
-lesshand = { path = "../lib" }
+lesshand = { workspace = true }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"

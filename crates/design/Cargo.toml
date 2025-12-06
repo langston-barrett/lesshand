@@ -11,7 +11,7 @@ license.workspace = true
 anyhow = { workspace = true }
 distance = { version = "0.4" }
 clap = { features = ["derive"], workspace = true }
-lesshand = { path = "../lib" }
+lesshand = { workspace = true }
 prettydiff = "0.9"
 
 [dev-dependencies]
