@@ -4,6 +4,4 @@
 *.txt
 target/
 
-# see scripts/lint/lint.py
-*.ninja
-/.out
+.lun
