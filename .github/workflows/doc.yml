@@ -51,6 +51,6 @@ jobs:
           path: doc/book/
 
       - name: Deploy docs to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         if: github.ref == 'refs/heads/main' && github.repository_owner == 'langston-barrett'
         id: deployment
